@@ -3,7 +3,7 @@ package fr.diginamic.repositories;
 import fr.diginamic.dao.IDao;
 import fr.diginamic.utils.enums.NameRepository;
 
-public final class BuilderRepository<T> {
+public final class BuilderRepository {
 
     private BuilderRepository() {
     }

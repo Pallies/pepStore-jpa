@@ -1,10 +1,10 @@
-package fr.diginamic.dao;
+package fr.diginamic.dao.impl;
 
 import java.util.List;
 
 public interface IDaoImpl<T,U>  {
 
-    public List<T> find();
+   // public List<T> find();
 
     public T findById(U id);
 

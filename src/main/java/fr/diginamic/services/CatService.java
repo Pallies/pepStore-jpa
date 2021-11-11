@@ -1,7 +1,7 @@
 package fr.diginamic.services;
 
 import fr.diginamic.dao.ICatDao;
-import fr.diginamic.dao.IDaoImpl;
+import fr.diginamic.dao.impl.IDaoImpl;
 import fr.diginamic.entities.animals.Cat;
 import fr.diginamic.repositories.BuilderRepository;
 import fr.diginamic.utils.enums.NameRepository;
@@ -17,7 +17,6 @@ public class CatService implements IDaoImpl<Cat, Long> {
         repository = (ICatDao) BuilderRepository.getRepository(NameRepository.CAT);
     }
 
-    @Override
     public List<Cat> find() {
         return repository.find();
     }
