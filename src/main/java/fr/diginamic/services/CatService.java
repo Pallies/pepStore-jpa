@@ -8,7 +8,7 @@ import fr.diginamic.utils.enums.NameRepository;
 
 import java.util.List;
 
-public class CatService extends AnimalService implements IDaoImpl<Cat, Long> {
+public class CatService implements IDaoImpl<Cat, Long> {
 
 
     private static ICatDao repository;

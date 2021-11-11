@@ -10,7 +10,7 @@ import fr.diginamic.utils.enums.NameRepository;
 import java.util.List;
 
 
-public class FishService extends AnimalService implements IDaoImpl<Fish, Long> {
+public class FishService implements IDaoImpl<Fish, Long> {
 
     private static IFishDao repository;
 

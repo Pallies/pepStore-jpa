@@ -5,8 +5,6 @@ import fr.diginamic.entities.animals.Cat;
 import fr.diginamic.entities.animals.Fish;
 import fr.diginamic.enums.Color;
 import fr.diginamic.enums.FishLivEnv;
-import fr.diginamic.enums.ProdType;
-import fr.diginamic.services.AnimalService;
 
 import java.time.LocalDate;
 
