@@ -1,5 +1,6 @@
 package fr.diginamic.repositories;
 
+import fr.diginamic.dao.IPetStoreDao;
 import fr.diginamic.entities.store.Address;
 import fr.diginamic.entities.store.PetStore;
 import fr.diginamic.utils.enums.ModeDB;
@@ -7,7 +8,7 @@ import fr.diginamic.utils.enums.ModeDB;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class PetStoreRepository extends Repository<PetStore> {
+public class PetStoreRepository extends Repository implements IPetStoreDao {
     @Override
     public List<PetStore> find() {
         return getEntityManger()

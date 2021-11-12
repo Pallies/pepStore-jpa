@@ -1,11 +1,12 @@
 package fr.diginamic.repositories;
 
+import fr.diginamic.dao.IAddressDao;
 import fr.diginamic.dao.IDao;
 import fr.diginamic.entities.store.Address;
 
 import java.util.List;
 
-public class AddressRepository extends Repository<Address>{
+public class AddressRepository extends Repository implements IAddressDao {
     @Override
     public List<Address> find() {
         return getEntityManger()

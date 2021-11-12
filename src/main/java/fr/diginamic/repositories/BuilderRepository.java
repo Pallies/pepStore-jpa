@@ -1,6 +1,5 @@
 package fr.diginamic.repositories;
 
-import fr.diginamic.entities.animals.Cat;
 import fr.diginamic.utils.enums.NameRepository;
 
 public final class BuilderRepository {
@@ -8,7 +7,7 @@ public final class BuilderRepository {
     private BuilderRepository() {
     }
 
-    public static Repository<?> getRepository(NameRepository name) {
+    public static Repository getRepository(NameRepository name) {
         switch (name) {
             case CAT:
                 return new CatRepository();
@@ -21,7 +20,7 @@ public final class BuilderRepository {
             case ADDRESS:
                 return new AddressRepository();
         }
-        return null;//TODO ERROR
+        throw new UnsupportedOperationException();
     }
 
 
