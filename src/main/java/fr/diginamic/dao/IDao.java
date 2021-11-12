@@ -17,6 +17,4 @@ public interface IDao<T, U> {
 
     public boolean contains(T object);
 
-
-
 }

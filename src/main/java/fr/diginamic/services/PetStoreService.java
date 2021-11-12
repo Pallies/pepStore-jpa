@@ -1,19 +1,18 @@
 package fr.diginamic.services;
 
-import fr.diginamic.dao.IPetStoreDao;
-import fr.diginamic.dao.impl.IPetStoreDaoImpl;
 import fr.diginamic.entities.store.PetStore;
 import fr.diginamic.repositories.BuilderRepository;
+import fr.diginamic.repositories.Repository;
 import fr.diginamic.utils.enums.NameRepository;
 
 import java.util.List;
 
-public class PetStoreService extends Service<PetStore, Long> implements IPetStoreDaoImpl {
+public class PetStoreService extends Service<PetStore, Long> {
 
-    private final IPetStoreDao repository;
+    private final Repository repository;
 
     {
-        repository = (IPetStoreDao) BuilderRepository.getRepository(NameRepository.PETSTORE);
+        repository = BuilderRepository.getRepository(NameRepository.PETSTORE);
     }
 
     @Override
@@ -23,7 +22,7 @@ public class PetStoreService extends Service<PetStore, Long> implements IPetStor
 
     @Override
     public PetStore findById(Long id) {
-        return repository.findById(id);
+        return (PetStore) repository.findById(id);
     }
 
     @Override

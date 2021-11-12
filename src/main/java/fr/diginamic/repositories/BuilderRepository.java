@@ -8,7 +8,7 @@ public final class BuilderRepository {
     private BuilderRepository() {
     }
 
-    public static IDao getRepository(NameRepository name) {
+    public static Repository getRepository(NameRepository name) {
         switch (name) {
             case CAT:
                 return new CatRepository();

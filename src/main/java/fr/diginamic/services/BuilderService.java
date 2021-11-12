@@ -4,6 +4,8 @@ import fr.diginamic.dao.impl.IDaoImpl;
 import fr.diginamic.entities.animals.Fish;
 import fr.diginamic.utils.enums.NameRepository;
 
+import java.security.UnresolvedPermission;
+
 public final class BuilderService {
 
     private BuilderService() {
@@ -20,7 +22,10 @@ public final class BuilderService {
                 return new AnimalService();
             case PETSTORE:
                 return new PetStoreService();
+            case PRODUCT:
+                return new ProductService();
         }
-        return null;//TODO error
+        return null;
+        //throw new UnsupportedOperationException();
     }
 }

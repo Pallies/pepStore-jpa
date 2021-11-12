@@ -1,6 +1,5 @@
 package fr.diginamic.services;
 
-import fr.diginamic.dao.impl.IAnimalDaoImpl;
 import fr.diginamic.entities.animals.Animal;
 import fr.diginamic.entities.animals.Cat;
 import fr.diginamic.entities.animals.Fish;
@@ -9,7 +8,7 @@ import fr.diginamic.utils.enums.NameRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnimalService extends Service<Animal,Long> implements IAnimalDaoImpl {
+public class AnimalService extends Service<Animal,Long>  {
 
     private final Service catService;
     private final Service fishService;
@@ -55,7 +54,6 @@ public class AnimalService extends Service<Animal,Long> implements IAnimalDaoImp
                 animal instanceof Fish && fishService.delete((Fish) animal);
     }
 
-    @Override
     public List<? extends Animal> find(Class<Animal> animalClass) {
         return animalClass.isInstance(Cat.class) ?
                     catService.find() :
