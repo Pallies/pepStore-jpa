@@ -1,6 +1,7 @@
 package fr.diginamic.entities.animals;
 
 import fr.diginamic.entities.store.PetStore;
+import fr.diginamic.enums.Color;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,7 +21,7 @@ public abstract class Animal implements Serializable {
 
     @Column(name = "COULEUR")
     @Enumerated(EnumType.STRING)
-    private String color;
+    private Color color;
 
     @ManyToOne
     @JoinColumn(name = "ID_STORE")
@@ -29,7 +30,7 @@ public abstract class Animal implements Serializable {
     public Animal() {
     }
 
-    public Animal(LocalDate date, String color) {
+    public Animal(LocalDate date, Color color) {
         Date = date;
         this.color = color;
     }
@@ -40,9 +41,11 @@ public abstract class Animal implements Serializable {
     }
 
     public void assignment(PetStore store) {
-        this.store.deleteAnimal(this);
-        this.store = store;
-        this.store.addAnimal(this);
+        if(store != null){
+            this.store.deleteAnimal(this);
+            this.store = store;
+            this.store.addAnimal(this);
+        }
     }
 
     //  GETTER AND SETTER
@@ -62,11 +65,11 @@ public abstract class Animal implements Serializable {
         Date = date;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
@@ -92,5 +95,17 @@ public abstract class Animal implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
+    }
+
+    @Override
+    public String toString() {
+        String categorie = this instanceof Fish ? "Poisson " :"Chat ";
+        String store = this.store == null ? "en attente d'affectation" : this.store.getName();
+        final StringBuffer sb = new StringBuffer("Animal ");
+        sb.append(" Catégorie : ").append(categorie)
+        .append(", Date : ").append(Date)
+        .append(color)
+        .append(", store : ").append(store);
+        return sb.toString();
     }
 }

@@ -1,20 +1,23 @@
 package fr.diginamic.services;
 
 import fr.diginamic.dao.impl.IDaoImpl;
+import fr.diginamic.entities.animals.Fish;
 import fr.diginamic.utils.enums.NameRepository;
 
 public final class BuilderService {
 
-    private BuilderService(){
+    private BuilderService() {
 
     }
 
-    public static IDaoImpl createService(NameRepository name){
-        switch (name){
+    public static Service createService(NameRepository name) {
+        switch (name) {
             case CAT:
                 return new CatService();
             case FISH:
                 return new FishService();
+            case ANIMAL:
+                return new AnimalService();
         }
         return null;//TODO error
     }

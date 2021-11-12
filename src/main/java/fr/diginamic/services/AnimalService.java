@@ -1,26 +1,24 @@
 package fr.diginamic.services;
 
 import fr.diginamic.dao.impl.IAnimalDaoImpl;
-import fr.diginamic.dao.impl.ICatDaoImpl;
-import fr.diginamic.dao.impl.IFishDaoImpl;
 import fr.diginamic.entities.animals.Animal;
 import fr.diginamic.entities.animals.Cat;
 import fr.diginamic.entities.animals.Fish;
+import fr.diginamic.utils.enums.NameRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnimalService implements IAnimalDaoImpl {
+public class AnimalService extends Service<Animal,Long> implements IAnimalDaoImpl {
 
-    private final ICatDaoImpl catService;
-    private final IFishDaoImpl fishService;
+    private final Service catService;
+    private final Service fishService;
 
     {
-        catService = (ICatDaoImpl) new CatService();
-        fishService = (IFishDaoImpl) new FishService();
+        fishService = BuilderService.createService(NameRepository.FISH);
+        catService = BuilderService.createService(NameRepository.CAT);
+
     }
-
-
 
     @Override
     public List<Animal> find() {
@@ -58,9 +56,10 @@ public class AnimalService implements IAnimalDaoImpl {
     }
 
     @Override
-    public List<Animal> find(Class<Animal> animalClass) {
-            return animalClass.isInstance(Cat.class) ?
+    public List<? extends Animal> find(Class<Animal> animalClass) {
+        return animalClass.isInstance(Cat.class) ?
                     catService.find() :
-                    animalClass.isInstance(Fish.class) ? fishService.find() : null;
-    }
+                    animalClass.isInstance(Fish.class) ?
+                            fishService.find() : null;
+         }
 }
