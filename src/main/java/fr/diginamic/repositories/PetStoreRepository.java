@@ -6,7 +6,7 @@ import fr.diginamic.utils.enums.ModeDB;
 
 import java.util.List;
 
-public class PetStoreRepository extends CommonsRepository<PetStore> implements IPetStoreDao {
+public class PetStoreRepository extends Repository<PetStore> implements IPetStoreDao {
     @Override
     public List<PetStore> find() {
         return getEntityManger()
@@ -39,8 +39,4 @@ public class PetStoreRepository extends CommonsRepository<PetStore> implements I
         return getEntityManger().contains(petStore);
     }
 
-    @Override
-    public IPetStoreDao getIDao() {
-        return this;
-    }
 }

@@ -18,6 +18,8 @@ public final class BuilderService {
                 return new FishService();
             case ANIMAL:
                 return new AnimalService();
+            case PETSTORE:
+                return new PetStoreService();
         }
         return null;//TODO error
     }

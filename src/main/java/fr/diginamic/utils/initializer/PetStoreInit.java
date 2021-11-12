@@ -26,7 +26,7 @@ public class PetStoreInit {
             new PetStore( "Liopé Animalerie","LIOPE","12","Rue Marie Curie", "44230" ,"Saint-Sébastien-sur-Loire"),
     };
 
-    public void insertStore(){
+    public static void insertStore(){
         List<PetStore> petStores= Arrays.asList(PET_STORES);
         Service<PetStore,Long> petStoreService = BuilderService.createService(NameRepository.PETSTORE);
         petStores.forEach(petStoreService::save);
