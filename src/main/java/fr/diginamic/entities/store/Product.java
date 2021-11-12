@@ -29,7 +29,7 @@ public class Product implements Serializable {
     @Column(name = "PRIX", precision = 10, scale = 2, nullable = false)
     private Double price;
 
-    @ManyToMany(mappedBy = "products",cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "products")
     private final Set<PetStore> petStores = new HashSet<>();
 
     public Product() {
