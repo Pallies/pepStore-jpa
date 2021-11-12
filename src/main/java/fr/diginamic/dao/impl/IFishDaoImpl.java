@@ -6,6 +6,6 @@ import fr.diginamic.entities.animals.Fish;
 import java.util.List;
 
 public interface IFishDaoImpl extends IDaoImpl<Fish, Long> {
-    public List<Animal> find();
+    public List<Fish> find();
 
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IDaoImpl<T,U>  {
 
-   // public List<T> find();
+    public List<T> find();
 
     public T findById(U id);
 
