@@ -9,18 +9,19 @@ public final class BuilderRepository {
 
     public static Repository getRepository(NameRepository name) {
         switch (name) {
-            case CAT:
+            case Cat:
                 return new CatRepository();
-            case FISH:
+            case Fish:
                 return new FishRepository();
-            case PETSTORE:
+            case PetStore:
                 return new PetStoreRepository();
-            case PRODUCT:
+            case Product:
                 return new ProductRepository();
-            case ADDRESS:
+            case Address:
                 return new AddressRepository();
+            default:
+                throw new IllegalStateException("Unexpected value: " + name);
         }
-        throw new UnsupportedOperationException();
     }
 
 
