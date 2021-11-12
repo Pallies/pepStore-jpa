@@ -8,14 +8,14 @@ import fr.diginamic.utils.enums.NameRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnimalService extends Service<Animal,Long>  {
+public class AnimalService extends Service<Animal>  {
 
-    private final Service catService;
-    private final Service fishService;
+    private final Service<Cat> catService;
+    private final Service<Fish> fishService;
 
     {
-        fishService = BuilderService.createService(NameRepository.FISH);
-        catService = BuilderService.createService(NameRepository.CAT);
+        fishService =  BuilderService.createService(NameRepository.FISH);
+        catService =  BuilderService.createService(NameRepository.CAT);
 
     }
 

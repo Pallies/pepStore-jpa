@@ -9,12 +9,12 @@ import fr.diginamic.utils.enums.NameRepository;
 import java.util.List;
 
 
-public class FishService extends Service<Fish,Long> {
+public class FishService extends Service<Fish> {
 
-    private static Repository repository;
+    private static Repository<Fish> repository;
 
     {
-        repository = BuilderRepository.getRepository(NameRepository.FISH);
+        repository = (Repository<Fish>) BuilderRepository.getRepository(NameRepository.FISH);
     }
 
     @Override

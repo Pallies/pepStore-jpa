@@ -7,12 +7,12 @@ import fr.diginamic.utils.enums.NameRepository;
 
 import java.util.List;
 
-public class PetStoreService extends Service<PetStore, Long> {
+public class PetStoreService extends Service<PetStore> {
 
-    private final Repository repository;
+    private final Repository<PetStore> repository;
 
     {
-        repository = BuilderRepository.getRepository(NameRepository.PETSTORE);
+        repository = (Repository<PetStore>) BuilderRepository.getRepository(NameRepository.PETSTORE);
     }
 
     @Override

@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-public class PetStoreInit {
+public final class PetStoreInit {
 
     private static final PetStore[] PET_STORES={
             new PetStore( "E.Leclerc Animalerie","LECLERC","","Bd Auguste Durand", "85600" ,"Montaigu-Vendée"),
@@ -28,7 +28,7 @@ public class PetStoreInit {
 
     public static void insertStore(){
         List<PetStore> petStores= Arrays.asList(PET_STORES);
-        Service<PetStore,Long> petStoreService = BuilderService.createService(NameRepository.PETSTORE);
+        Service petStoreService = BuilderService.createService(NameRepository.PETSTORE);
         petStores.forEach(petStoreService::save);
     }
 }

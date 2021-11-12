@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class AnimalsInit {
+public final class AnimalsInit {
     private static final Logger LOGGER = LoggerFactory.getLogger(AnimalsInit.class);
     private static final Animal[] ANIMALS = {
             new Cat(Rand.getDate(), Rand.getColor(), Rand.chipID()),
@@ -30,7 +30,7 @@ public abstract class AnimalsInit {
 
     public static void insertAllAnimals() {
         List<Animal> animalls = Arrays.asList(ANIMALS);
-        Service<Animal, Long> animalService = BuilderService.createService(NameRepository.ANIMAL);
+        Service animalService = BuilderService.createService(NameRepository.ANIMAL);
         animalls.forEach(animalService::save);
 
         animalls.forEach(a -> LOGGER.trace("save in database -> {}", a));

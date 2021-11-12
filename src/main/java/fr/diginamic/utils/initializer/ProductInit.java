@@ -82,7 +82,7 @@ public final class ProductInit {
         products.addAll(products4);
         products.addAll(products5);
         products.addAll(products6);
-        Service<Product> productService = BuilderService.createService(NameRepository.PRODUCT);
+        Service productService = BuilderService.createService(NameRepository.PRODUCT);
         products.forEach(productService::save);
     }
 }

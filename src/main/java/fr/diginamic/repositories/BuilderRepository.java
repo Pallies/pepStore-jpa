@@ -1,6 +1,6 @@
 package fr.diginamic.repositories;
 
-import fr.diginamic.dao.IDao;
+import fr.diginamic.entities.animals.Cat;
 import fr.diginamic.utils.enums.NameRepository;
 
 public final class BuilderRepository {
@@ -8,7 +8,7 @@ public final class BuilderRepository {
     private BuilderRepository() {
     }
 
-    public static Repository getRepository(NameRepository name) {
+    public static Repository<?> getRepository(NameRepository name) {
         switch (name) {
             case CAT:
                 return new CatRepository();

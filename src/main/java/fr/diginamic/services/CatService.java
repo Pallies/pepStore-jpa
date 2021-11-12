@@ -7,13 +7,13 @@ import fr.diginamic.utils.enums.NameRepository;
 
 import java.util.List;
 
-public class CatService extends Service<Cat, Long> {
+public class CatService extends Service<Cat> {
 
 
-    private static Repository repository;
+    private static Repository<Cat> repository;
 
     {
-        repository = BuilderRepository.getRepository(NameRepository.CAT);
+        repository = (Repository<Cat>) BuilderRepository.getRepository(NameRepository.CAT);
     }
 
 
