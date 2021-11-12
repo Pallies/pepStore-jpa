@@ -23,7 +23,7 @@ public class PetStore implements Serializable {
     @Embedded
     private Address address = new Address();
 
-    @OneToMany(mappedBy = "store")
+    @OneToMany(mappedBy = "store",cascade = CascadeType.ALL)
     private final Set<Animal> animals = new HashSet<>();
 
     @ManyToMany
