@@ -4,6 +4,7 @@ import fr.diginamic.entities.store.Address;
 import fr.diginamic.entities.store.PetStore;
 import fr.diginamic.utils.enums.ModeDB;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class PetStoreRepository extends Repository<PetStore> {
@@ -16,27 +17,29 @@ public class PetStoreRepository extends Repository<PetStore> {
 
     @Override
     public PetStore findById(Long id) {
-        return getEntityManger().find(PetStore.class,id);
+        return getEntityManger().find(PetStore.class, id);
     }
 
     @Override
-    public PetStore findByAddress(Address adress){
-        return getEntityManger().createQuery("SELECT p FROM PetStore as p WHERE P.address= :address",PetStore.class).getSingleResult();
+    public PetStore findByAddress(Address address) {
+        TypedQuery<PetStore> qry = getEntityManger().createQuery("SELECT p FROM PetStore as p JOIN p.address as a WHERE p.address= :address", PetStore.class);
+        qry.setParameter("address", address);
+        return qry.getSingleResult();
     }
 
     @Override
     public void save(PetStore petStore) {
-        getTransaction(ModeDB.PERSIST,petStore);
+        getTransaction(ModeDB.PERSIST, petStore);
     }
 
     @Override
     public void update(PetStore petStore) {
-        getTransaction(ModeDB.MERGE,petStore);
+        getTransaction(ModeDB.MERGE, petStore);
     }
 
     @Override
     public void delete(PetStore petStore) {
-        getTransaction(ModeDB.REMOVE,petStore);
+        getTransaction(ModeDB.REMOVE, petStore);
     }
 
     @Override

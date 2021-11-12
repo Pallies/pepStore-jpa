@@ -54,23 +54,24 @@ public final class PetStoreInit {
         Service animalService = BuilderService.createService(NameRepository.ANIMAL);
         List<Animal> animals = animalService.find();
         List<PetStore> petStores = petStoreService.find();
-        int i=0;
-        for(PetStore store: petStores){
-           Set<Animal> animalStore = animals.stream().skip(i).limit(12).collect(Collectors.toSet());
-           store.addAllAnimal(animalStore);
-           i+=12;
-           petStoreService.save(store);
+        int i = 0;
+        for (PetStore store : petStores) {
+            Set<Animal> animalStore = animals.stream().skip(i).limit(12).collect(Collectors.toSet());
+            store.addAllAnimal(animalStore);
+            i += 12;
+            petStoreService.save(store);
         }
     }
 
-    public static PetStore getPetStores(int id) {
-        if (id > 0 && id < PET_STORES.length)
-            return PET_STORES[id];
-        return null;
+    public static Set<Animal> getAnimalsInPetStores(int id) {
+        if (id < 0 || id >= 6)
+            return null;
+        LOGGER.trace("Animalerie : {}",PET_STORES[id]);
+        Service petStoreService = BuilderService.createService(NameRepository.PETSTORE);
+        Set<Animal> animals =petStoreService.findByAddress(PET_STORES[id].getAddress()).getAnimals();
+        animals.forEach(a->LOGGER.trace("{} appartenant à l'animalerie {}",a,a.getStore().getName()));
+        return animals;
     }
 
-    public static List<PetStore> getAllPetStore() {
-        return Arrays.asList(PET_STORES);
-    }
 }
 

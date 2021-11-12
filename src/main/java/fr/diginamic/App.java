@@ -29,5 +29,6 @@ public class App
         ProductInit.insertProduct();
         PetStoreInit.persistProduct();
         PetStoreInit.persitAnimal();
+        PetStoreInit.getAnimalsInPetStores(2);
     }
 }
