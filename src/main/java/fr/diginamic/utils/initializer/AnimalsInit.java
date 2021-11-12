@@ -3,6 +3,7 @@ package fr.diginamic.utils.initializer;
 import fr.diginamic.entities.animals.Animal;
 import fr.diginamic.entities.animals.Cat;
 import fr.diginamic.entities.animals.Fish;
+import fr.diginamic.entities.store.PetStore;
 import fr.diginamic.services.BuilderService;
 import fr.diginamic.services.Service;
 import fr.diginamic.utils.Rand;
@@ -93,7 +94,7 @@ public final class AnimalsInit {
 
     public static void insertAllAnimals() {
         List<Animal> animalls = Arrays.asList(ANIMALS);
-        Service animalService = BuilderService.createService(NameRepository.ANIMAL);
+        Service<Animal> animalService = BuilderService.createService(Animal.class);
         animalls.forEach(animalService::save);
         animalls.forEach(a -> LOGGER.trace("save in database -> {}", a));
     }

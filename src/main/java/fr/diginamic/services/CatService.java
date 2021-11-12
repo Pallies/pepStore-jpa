@@ -1,19 +1,20 @@
 package fr.diginamic.services;
 
+import fr.diginamic.dao.ICatDao;
+import fr.diginamic.dao.impl.ICatDaoImpl;
 import fr.diginamic.entities.animals.Cat;
 import fr.diginamic.repositories.BuilderRepository;
-import fr.diginamic.repositories.Repository;
 import fr.diginamic.utils.enums.NameRepository;
 
 import java.util.List;
 
-public class CatService extends Service<Cat> {
+public class CatService extends Service<Cat> implements ICatDaoImpl {
 
 
-    private static Repository<Cat> repository;
+    private static ICatDao repository;
 
     {
-        repository = (Repository<Cat>) BuilderRepository.getRepository(NameRepository.CAT);
+        repository = (ICatDao) BuilderRepository.getRepository(NameRepository.Cat);
     }
 
 

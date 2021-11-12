@@ -1,18 +1,19 @@
 package fr.diginamic.services;
 
+import fr.diginamic.dao.IProductDao;
+import fr.diginamic.dao.impl.IProductDaoImpl;
 import fr.diginamic.entities.store.Product;
 import fr.diginamic.repositories.BuilderRepository;
-import fr.diginamic.repositories.Repository;
 import fr.diginamic.utils.enums.NameRepository;
 
 import java.util.List;
 
-public class ProductService extends Service<Product> {
+public class ProductService extends Service<Product> implements IProductDaoImpl {
 
-    private final Repository<Product> repository;
+    private final IProductDao repository;
 
     {
-        repository = (Repository<Product>) BuilderRepository.getRepository(NameRepository.PRODUCT);
+        repository = (IProductDao) BuilderRepository.getRepository(NameRepository.Product);
     }
 
     @Override

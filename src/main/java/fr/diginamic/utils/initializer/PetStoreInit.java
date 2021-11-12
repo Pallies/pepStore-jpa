@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public final class PetStoreInit {
@@ -30,15 +29,15 @@ public final class PetStoreInit {
 
     public static void insertStore() {
         List<PetStore> petStores = Arrays.asList(PET_STORES);
-        Service petStoreService = BuilderService.createService(NameRepository.PETSTORE);
+        Service<PetStore> petStoreService = BuilderService.createService(PetStore.class);
         petStores.forEach(petStoreService::save);
         petStores.forEach(petStore -> LOGGER.trace("petStore -> {}", petStore.getName()));
     }
 
     public static void persistProduct() {
         LOGGER.trace("affectation des produits");
-        Service petStoreService = BuilderService.createService(NameRepository.PETSTORE);
-        Service productService = BuilderService.createService(NameRepository.PRODUCT);
+        Service<PetStore> petStoreService = BuilderService.createService(PetStore.class);
+        Service<Product> productService = BuilderService.createService(Product.class);
         List<PetStore> petStores = petStoreService.find();
         List<Product> products = productService.find();
 
@@ -51,8 +50,8 @@ public final class PetStoreInit {
 
     public static void persitAnimal() {
         LOGGER.trace("affectation des Animaux");
-        Service petStoreService = BuilderService.createService(NameRepository.PETSTORE);
-        Service animalService = BuilderService.createService(NameRepository.ANIMAL);
+        Service<PetStore> petStoreService = BuilderService.createService(PetStore.class);
+        Service<Animal> animalService = BuilderService.createService(Animal.class);
         List<Animal> animals = animalService.find();
         List<PetStore> petStores = petStoreService.find();
         int i = 0;
@@ -64,13 +63,12 @@ public final class PetStoreInit {
         }
     }
 
-    public static Set<Animal> getAnimalsInPetStores(int id) {
+    public static void getAnimalsInPetStores(int id) {
         if (id < 0 || id >= 6)
-            return null;
-        Service petStoreService = BuilderService.createService(NameRepository.PETSTORE);
-        Set<Animal> animals =petStoreService.findByAddress(PET_STORES[id].getAddress()).getAnimals();
-        animals.forEach(a->LOGGER.trace("{} appartenant à l'animalerie {}",a,a.getStore().getName()));
-        return animals;
+            return;
+        Service<PetStore> petStoreService = (Service<PetStore>) BuilderService.createService(PetStore.class);
+        Set<Animal> animals = petStoreService.findByAddress(PET_STORES[id].getAddress()).getAnimals();
+        animals.forEach(a -> LOGGER.trace("{} appartenant à l'animalerie {}", a, a.getStore().getName()));
     }
 
 }

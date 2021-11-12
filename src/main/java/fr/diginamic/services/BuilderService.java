@@ -1,10 +1,9 @@
 package fr.diginamic.services;
 
-import fr.diginamic.dao.impl.IDaoImpl;
-import fr.diginamic.entities.animals.Fish;
+import fr.diginamic.entities.animals.Cat;
+import fr.diginamic.entities.store.PetStore;
 import fr.diginamic.utils.enums.NameRepository;
 
-import java.security.UnresolvedPermission;
 
 public final class BuilderService {
 
@@ -12,20 +11,23 @@ public final class BuilderService {
 
     }
 
-    public static Service createService(NameRepository name) {
-        switch (name) {
-            case CAT:
-                return new CatService();
-            case FISH:
-                return new FishService();
-            case ANIMAL:
-                return new AnimalService();
-            case PETSTORE:
-                return new PetStoreService();
-            case PRODUCT:
-                return new ProductService();
+    @SuppressWarnings("unchecked")
+    public static <T> Service<T> createService(Class<T> T ) {
+        switch (NameRepository.getClassForName(T.toString())) {
+            case Cat:
+                return (Service<T>) new CatService();
+            case Fish:
+                return (Service<T>) new FishService();
+            case Animal:
+                return (Service<T>) new AnimalService();
+            case PetStore:
+                return (Service<T>) new PetStoreService();
+            case Product:
+                return (Service<T>) new ProductService();
+            default:
+                throw new IllegalStateException("Unexpected value: " + NameRepository.getClassForName(T.toString()));
         }
-        return null;
-        //throw new UnsupportedOperationException();
     }
+
+
 }
