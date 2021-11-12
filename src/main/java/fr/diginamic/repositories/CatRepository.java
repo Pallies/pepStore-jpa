@@ -7,11 +7,7 @@ import fr.diginamic.utils.enums.ModeDB;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class CatRepository extends CommonsRepository<Cat> implements ICatDao {
-
-    public ICatDao getIDao(){
-        return this;
-    }
+public class CatRepository extends Repository<Cat> implements ICatDao {
 
     @Override
     public List<Cat> find() {

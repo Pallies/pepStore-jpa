@@ -5,7 +5,7 @@ import fr.diginamic.utils.connection.ConnectionDB;
 
 import javax.persistence.EntityManager;
 
-public abstract class CommonsRepository<T>{
+public abstract class Repository<T>{
 
     public EntityManager getEntityManger() {
         return ConnectionDB.getEntityManager();

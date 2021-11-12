@@ -1,14 +1,12 @@
 package fr.diginamic.repositories;
 
-import fr.diginamic.dao.IDao;
 import fr.diginamic.dao.IFishDao;
-import fr.diginamic.entities.animals.Cat;
 import fr.diginamic.entities.animals.Fish;
 import fr.diginamic.utils.enums.ModeDB;
 
 import java.util.List;
 
-public class FishRepository extends CommonsRepository<Fish> implements IFishDao {
+public class FishRepository extends Repository<Fish> implements IFishDao {
 
 
     @Override
@@ -43,7 +41,5 @@ public class FishRepository extends CommonsRepository<Fish> implements IFishDao 
         return getEntityManger().contains(fish);
     }
 
-    public IFishDao getIDao() {
-        return this;
-    }
+
 }

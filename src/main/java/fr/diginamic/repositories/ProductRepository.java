@@ -6,7 +6,7 @@ import fr.diginamic.utils.enums.ModeDB;
 
 import java.util.List;
 
-public class ProductRepository extends CommonsRepository<Product> implements IProductDao {
+public class ProductRepository extends Repository<Product> implements IProductDao {
     @Override
     public List<Product> find() {
         return getEntityManger()
@@ -39,8 +39,4 @@ public class ProductRepository extends CommonsRepository<Product> implements IPr
         return getEntityManger().contains(product);
     }
 
-    @Override
-    public IProductDao getIDao() {
-        return this;
     }
-}

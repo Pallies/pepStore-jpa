@@ -5,7 +5,7 @@ import fr.diginamic.entities.store.Address;
 
 import java.util.List;
 
-public class AddressRepository extends CommonsRepository<Address> implements IAdresseDao {
+public class AddressRepository extends Repository<Address> implements IAdresseDao {
     @Override
     public List<Address> find() {
         return getEntityManger()
@@ -37,8 +37,4 @@ public class AddressRepository extends CommonsRepository<Address> implements IAd
         return false;
     }
 
-    @Override
-    public IAdresseDao getIDao() {
-        return this;
-    }
 }
