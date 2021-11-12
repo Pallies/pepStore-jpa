@@ -18,7 +18,7 @@ import java.util.List;
 
 public abstract class AnimalsInit {
     private static final Logger LOGGER = LoggerFactory.getLogger(AnimalsInit.class);
-    private static final Animal[] animals = {
+    private static final Animal[] ANIMALS = {
             new Cat(Rand.getDate(), Rand.getColor(), Rand.chipID()),
             new Cat(Rand.getDate(), Rand.getColor(), Rand.chipID()),
             new Cat(Rand.getDate(), Rand.getColor(), Rand.chipID()),
@@ -29,7 +29,7 @@ public abstract class AnimalsInit {
 
 
     public static void insertAllAnimals() {
-        List<Animal> animalls = Arrays.asList(animals);
+        List<Animal> animalls = Arrays.asList(ANIMALS);
         Service<Animal, Long> animalService = BuilderService.createService(NameRepository.ANIMAL);
         animalls.forEach(animalService::save);
 
