@@ -1,12 +1,12 @@
 package fr.diginamic.repositories;
 
-import fr.diginamic.dao.IDao;
+import fr.diginamic.entities.store.Address;
 import fr.diginamic.entities.store.PetStore;
 import fr.diginamic.utils.enums.ModeDB;
 
 import java.util.List;
 
-public class PetStoreRepository extends Repository<PetStore>  {
+public class PetStoreRepository extends Repository<PetStore> {
     @Override
     public List<PetStore> find() {
         return getEntityManger()
@@ -17,6 +17,11 @@ public class PetStoreRepository extends Repository<PetStore>  {
     @Override
     public PetStore findById(Long id) {
         return getEntityManger().find(PetStore.class,id);
+    }
+
+    @Override
+    public PetStore findByAddress(Address adress){
+        return getEntityManger().createQuery("SELECT p FROM PetStore as p WHERE P.address= :address",PetStore.class).getSingleResult();
     }
 
     @Override

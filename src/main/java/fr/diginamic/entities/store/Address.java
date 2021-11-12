@@ -70,4 +70,19 @@ public class Address implements Serializable {
             setCity(addressOld.getCity());
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Address) return false;
+        Address address = (Address) obj;
+        return getNumber().equals(address.getNumber())
+                && getStreet().equals(address.getStreet())
+                && getZipCode().equals(address.getZipCode())
+                && getCity().equals(address.getCity());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNumber(), getStreet(), getZipCode(), getCity());
+    }
 }

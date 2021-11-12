@@ -1,5 +1,6 @@
 package fr.diginamic.services;
 
+import fr.diginamic.entities.store.Address;
 import fr.diginamic.entities.store.PetStore;
 import fr.diginamic.repositories.BuilderRepository;
 import fr.diginamic.repositories.Repository;
@@ -7,7 +8,7 @@ import fr.diginamic.utils.enums.NameRepository;
 
 import java.util.List;
 
-public class PetStoreService extends Service<PetStore> {
+public class PetStoreService extends Service<PetStore>{
 
     private final Repository<PetStore> repository;
 
@@ -25,6 +26,10 @@ public class PetStoreService extends Service<PetStore> {
         return (PetStore) repository.findById(id);
     }
 
+
+    public PetStore findByAddress(Address address){
+        return repository.findByAddress(address);
+    }
     @Override
     public boolean save(PetStore petStore) {
         repository.save(petStore);

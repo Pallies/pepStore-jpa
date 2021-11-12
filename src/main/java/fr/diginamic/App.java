@@ -1,12 +1,15 @@
 package fr.diginamic;
 
+import fr.diginamic.entities.store.PetStore;
 import fr.diginamic.utils.connection.ConnectionDB;
 import fr.diginamic.utils.initializer.AnimalsInit;
 import fr.diginamic.utils.initializer.PetStoreInit;
+import fr.diginamic.utils.initializer.ProductInit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 /**
  * Hello world!
@@ -23,5 +26,8 @@ public class App
 
         AnimalsInit.insertAllAnimals();
         PetStoreInit.insertStore();
+        ProductInit.insertProduct();
+        PetStoreInit.persistProduct();
+        PetStoreInit.persitAnimal();
     }
 }

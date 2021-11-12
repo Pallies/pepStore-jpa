@@ -1,6 +1,7 @@
 package fr.diginamic.repositories;
 
 import fr.diginamic.dao.IDao;
+import fr.diginamic.entities.store.Address;
 import fr.diginamic.utils.enums.ModeDB;
 import fr.diginamic.utils.connection.ConnectionDB;
 
@@ -32,4 +33,8 @@ public abstract class Repository<T> implements IDao<T,Long> {
         em.getTransaction().commit();
     }
     public abstract boolean contains(T object);
+
+    public T findByAddress(Address address){
+        return null;
+    };
 }

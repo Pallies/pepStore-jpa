@@ -42,9 +42,8 @@ public abstract class Animal implements Serializable {
 
     public void assignment(PetStore store) {
         if(store != null){
-            this.store.deleteAnimal(this);
             this.store = store;
-            this.store.addAnimal(this);
+            store.addAnimal(this);
         }
     }
 

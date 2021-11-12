@@ -55,21 +55,6 @@ public class Product implements Serializable {
             setPrice(product.getPrice());
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Product))
-            return false;
-        Product product = (Product) obj;
-        if (product.getId() != null)
-            return Objects.equals(getId(), product.getId()) && getCode().equals(product.getCode());
-        return getCode().equals(product.getCode());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getCode());
-    }
-
     public Long getId() {
         return id;
     }
@@ -116,7 +101,31 @@ public class Product implements Serializable {
 
     public void addPetStore(PetStore petStore) {
         petStores.add(petStore);
+        petStore.addProduct(this);
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", label='" + label + '\'' +
+                ", type=" + type +
+                ", price=" + price +
+                ", petStores=" + petStores +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Product))
+            return false;
+        Product product = (Product) obj;
+        return getCode().equals(product.getCode());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getCode());
+    }
 }
