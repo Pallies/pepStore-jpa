@@ -16,7 +16,9 @@
     <logger name="org.hibernate.pretty" level="OFF"/>
     <logger name="org.hibernate.cache" level="OFF"/>
     <logger name="org.hibernate.type.descriptor.sql" level="OFF" />
-
+    <logger name="fr.diginamic" level="TRACE" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
 
     <root level="OFF">
         <appender-ref ref="STDOUT" />
