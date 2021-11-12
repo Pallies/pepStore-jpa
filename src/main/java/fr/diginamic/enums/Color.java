@@ -19,4 +19,14 @@ public enum Color {
     Color(String color) {
         this.color = color;
     }
+
+    public static Color getColor(int id) {
+        return Color.values()[id];
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer(" de couleur : ");
+        return sb.append(color).toString();
+    }
 }
