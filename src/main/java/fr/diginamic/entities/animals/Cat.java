@@ -1,6 +1,7 @@
 package fr.diginamic.entities.animals;
 
 import fr.diginamic.entities.store.PetStore;
+import fr.diginamic.enums.Color;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,13 +13,13 @@ import java.time.LocalDate;
 @Table(name = "CAT")
 public class Cat extends Animal implements Serializable {
 
-    @Column(length = 6,nullable = false)
+    @Column(length = 6, nullable = false)
     private String chipId;
 
     public Cat() {
     }
 
-    public Cat(LocalDate date, String color,  String chipId) {
+    public Cat(LocalDate date, Color color, String chipId) {
         super(date, color);
         this.chipId = chipId;
     }
@@ -37,4 +38,8 @@ public class Cat extends Animal implements Serializable {
         this.chipId = chipId;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + " chipId : " + chipId;
+    }
 }

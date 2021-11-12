@@ -1,6 +1,7 @@
 package fr.diginamic.entities.animals;
 
 import fr.diginamic.entities.store.PetStore;
+import fr.diginamic.enums.Color;
 import fr.diginamic.enums.FishLivEnv;
 
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ public class Fish extends Animal implements Serializable {
     public Fish() {
     }
 
-    public Fish(LocalDate date, String color,FishLivEnv livingEnv) {
+    public Fish(LocalDate date, Color color, FishLivEnv livingEnv) {
         super(date, color);
         this.livingEnv = livingEnv;
     }
@@ -37,5 +38,10 @@ public class Fish extends Animal implements Serializable {
         if (getLivingEnv() == null)
             setLivingEnv(fishOld.getLivingEnv());
         setAnimal(fishOld);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+" livingEnv : " + livingEnv;
     }
 }

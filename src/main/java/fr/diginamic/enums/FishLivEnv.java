@@ -7,7 +7,7 @@ public enum FishLivEnv {
     private String environnement;
 
     FishLivEnv(String environnement) {
-        this.environnement=environnement;
+        this.environnement = environnement;
     }
 
     public String getEnvironnement() {
@@ -16,6 +16,10 @@ public enum FishLivEnv {
 
     public void setEnvironnement(String environnement) {
         this.environnement = environnement;
+    }
+
+    public static FishLivEnv getEnv(int id) {
+        return FishLivEnv.values()[id];
     }
 
     @Override

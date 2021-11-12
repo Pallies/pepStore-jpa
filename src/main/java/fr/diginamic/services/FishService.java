@@ -1,8 +1,8 @@
 package fr.diginamic.services;
 
 
-import fr.diginamic.dao.impl.IDaoImpl;
 import fr.diginamic.dao.IFishDao;
+import fr.diginamic.dao.impl.IFishDaoImpl;
 import fr.diginamic.entities.animals.Fish;
 import fr.diginamic.repositories.BuilderRepository;
 import fr.diginamic.utils.enums.NameRepository;
@@ -10,7 +10,7 @@ import fr.diginamic.utils.enums.NameRepository;
 import java.util.List;
 
 
-public class FishService implements IDaoImpl<Fish, Long> {
+public class FishService extends Service<Fish,Long> implements IFishDaoImpl {
 
     private static IFishDao repository;
 
@@ -18,14 +18,14 @@ public class FishService implements IDaoImpl<Fish, Long> {
         repository = (IFishDao) BuilderRepository.getRepository(NameRepository.FISH);
     }
 
-
-    public List<Fish> find() {
-        return repository.find();
-    }
-
     @Override
     public Fish findById(Long id) {
         return repository.findById(id);
+    }
+
+    @Override
+    public List<Fish> find() {
+        return repository.find();
     }
 
     @Override
