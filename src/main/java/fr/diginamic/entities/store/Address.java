@@ -12,19 +12,19 @@ import java.util.Objects;
 public class Address implements Serializable {
 
     /** The number. */
-    @Column(name = "NUMERO")
+    @Column(name="NUMERO")
     private String number;
     
     /** The Street. */
-    @Column(name = "RUE", nullable = false)
+    @Column(name="RUE", nullable = false)
     private String Street;
     
     /** The zip code. */
-    @Column(name = "CODE_POSTAL", length = 5, nullable = false)
+    @Column(name = "CODE_POSTAL",length = 5, nullable = false)
     private String zipCode;
     
     /** The city. */
-    @Column(name = "VILLE", length = 50, nullable = false)
+    @Column( name = "VILLE",length = 50, nullable = false)
     private String city;
 
     /**
