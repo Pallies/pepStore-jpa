@@ -47,12 +47,11 @@ public class PetStore implements Serializable {
     }
 
     public void addAllAnimal(Set<Animal> animals) {
-        animals.forEach(a -> a.assignment(this));
         this.animals.addAll(animals);
+        animals.forEach(a -> a.assignment(this));
     }
 
     public void addAnimal(Animal animal) {
-        animal.assignment(this);
         animals.add(animal);
     }
 
@@ -66,9 +65,6 @@ public class PetStore implements Serializable {
         address.addressMerge(petStoreOld.getAddress());
     }
 
-    public void deleteAnimal(Animal animal) {
-        animals.removeIf(animalRef -> animalRef.equals(animal));
-    }
 
     //  PRODUCT
     public Set<Product> getProducts() {
@@ -77,14 +73,11 @@ public class PetStore implements Serializable {
 
     public void addAllProduct(Set<Product> products) {
         this.products.addAll(products);
+        products.forEach(p->p.addPetStore(this));
     }
 
     public void addProduct(Product product) {
         products.add(product);
-    }
-
-    public void deleteProduct(Product product) {
-        products.removeIf(productRef -> productRef.equals(product));
     }
 
     //  GETTER AND SETTER
@@ -118,5 +111,22 @@ public class PetStore implements Serializable {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof PetStore))
+            return false;
+        PetStore petStore = (PetStore) obj;
+        if(petStore.getId() != null)
+           return getId().equals(petStore.getId());
+        return Objects.equals(getName(), petStore.getName())
+                && Objects.equals(getManagerName(), petStore.getManagerName())
+                && Objects.equals(getAddress(), petStore.getAddress());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash( getName(), getManagerName(), getAddress());
     }
 }
