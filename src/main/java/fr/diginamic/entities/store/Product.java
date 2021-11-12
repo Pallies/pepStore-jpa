@@ -29,7 +29,7 @@ public class Product implements Serializable {
     @Column(name = "PRIX", precision = 10, scale = 2, nullable = false)
     private Double price;
 
-    @ManyToMany(mappedBy = "products",cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "products", cascade = CascadeType.ALL)
     private final Set<PetStore> petStores = new HashSet<>();
 
     public Product() {
@@ -42,8 +42,40 @@ public class Product implements Serializable {
         setPrice(price);
     }
 
+    public void productUpdate(Product product) {
+        if (getId() == null)
+            setId(product.getId());
+        if (getCode() == null)
+            setCode(product.getCode());
+        if (getLabel() == null)
+            setLabel(product.getLabel());
+        if (getType() == null)
+            setType(product.getType());
+        if (getPrice() == null)
+            setPrice(product.getPrice());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Product))
+            return false;
+        Product product = (Product) obj;
+        if (product.getId() != null)
+            return Objects.equals(getId(), product.getId()) && getCode().equals(product.getCode());
+        return getCode().equals(product.getCode());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getCode());
+    }
+
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCode() {
@@ -81,21 +113,10 @@ public class Product implements Serializable {
     public Set<PetStore> getPetStores() {
         return petStores;
     }
-    public void addPetStore(PetStore petStore){
+
+    public void addPetStore(PetStore petStore) {
         petStores.add(petStore);
     }
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Product))
-            return false;
-        Product product = (Product) obj;
-        if (product.getId() != null)
-            return Objects.equals(getId(), product.getId()) && getCode().equals(product.getCode());
-        return getCode().equals(product.getCode());
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getCode());
-    }
+
 }

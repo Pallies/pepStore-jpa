@@ -1,12 +1,12 @@
 package fr.diginamic.repositories;
 
-import fr.diginamic.dao.IProductDao;
+import fr.diginamic.dao.IDao;
 import fr.diginamic.entities.store.Product;
 import fr.diginamic.utils.enums.ModeDB;
 
 import java.util.List;
 
-public class ProductRepository extends Repository<Product> implements IProductDao {
+public class ProductRepository extends Repository<Product>  {
     @Override
     public List<Product> find() {
         return getEntityManger()
