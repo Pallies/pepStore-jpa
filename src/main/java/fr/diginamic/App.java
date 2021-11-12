@@ -12,13 +12,19 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 /**
- * Hello world!
- *
+ * Hello world!.
  */
 public class App 
 {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     */
     public static void main( String[] args )
     {
         EntityManager test = ConnectionDB.getEntityManager();

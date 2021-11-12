@@ -14,8 +14,15 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The Class AnimalsInit.
+ */
 public final class AnimalsInit {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(AnimalsInit.class);
+    
+    /** The Constant ANIMALS. */
     private static final Animal[] ANIMALS = {
             new Cat(Rand.getDate(), Rand.getColor(), Rand.chipID()),
             new Cat(Rand.getDate(), Rand.getColor(), Rand.chipID()),
@@ -92,6 +99,10 @@ public final class AnimalsInit {
     };
 
 
+    /**
+     * Insert all animals.
+     * in data base
+     */
     public static void insertAllAnimals() {
         List<Animal> animalls = Arrays.asList(ANIMALS);
         Service<Animal> animalService = BuilderService.createService(Animal.class);

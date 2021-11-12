@@ -14,10 +14,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * The Class PetStoreInit.
+ */
 public final class PetStoreInit {
 
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(PetStoreInit.class);
 
+    /** The Constant PET_STORES. */
     private static final PetStore[] PET_STORES = {
             new PetStore("E.Leclerc Animalerie", "LECLERC", "", "Bd Auguste Durand", "85600", "Montaigu-Vendée"),
             new PetStore("Poulailler Direct", "POULAILLER", "15bis", "Av. de la Vertonne", "44120", "Vertou"),
@@ -27,6 +32,10 @@ public final class PetStoreInit {
             new PetStore("Liopé Animalerie", "LIOPE", "12", "Rue Marie Curie", "44230", "Saint-Sébastien-sur-Loire"),
     };
 
+    /**
+     * Insert store.
+     * in data base
+     */
     public static void insertStore() {
         List<PetStore> petStores = Arrays.asList(PET_STORES);
         Service<PetStore> petStoreService = BuilderService.createService(PetStore.class);
@@ -34,6 +43,10 @@ public final class PetStoreInit {
         petStores.forEach(petStore -> LOGGER.trace("petStore -> {}", petStore.getName()));
     }
 
+    /**
+     * Persist product.
+     * in data base with relation
+     */
     public static void persistProduct() {
         LOGGER.trace("affectation des produits");
         Service<PetStore> petStoreService = BuilderService.createService(PetStore.class);
@@ -48,6 +61,10 @@ public final class PetStoreInit {
         }
     }
 
+    /**
+     * Persit animal.
+     * in data base with relation
+     */
     public static void persitAnimal() {
         LOGGER.trace("affectation des Animaux");
         Service<PetStore> petStoreService = BuilderService.createService(PetStore.class);
@@ -63,11 +80,18 @@ public final class PetStoreInit {
         }
     }
 
+    /**
+     * Gets the animals in pet stores.
+     *
+     * @param id the id
+     * @return the animals in pet stores
+     */
     public static void getAnimalsInPetStores(int id) {
         if (id < 0 || id >= 6)
             return;
-        Service<PetStore> petStoreService = (Service<PetStore>) BuilderService.createService(PetStore.class);
+        Service<PetStore> petStoreService = BuilderService.createService(PetStore.class);
         Set<Animal> animals = petStoreService.findByAddress(PET_STORES[id].getAddress()).getAnimals();
+        LOGGER.trace("\n\n réponse à la question du TP : \n\n\n ");
         animals.forEach(a -> LOGGER.trace("{} appartenant à l'animalerie {}", a, a.getStore().getName()));
     }
 
