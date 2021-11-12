@@ -1,6 +1,7 @@
 package fr.diginamic;
 
 import fr.diginamic.utils.connection.ConnectionDB;
+import fr.diginamic.utils.initializer.AnimalsInit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,5 +20,6 @@ public class App
         EntityManager test = ConnectionDB.getEntityManager();
         LOGGER.trace("Lancement App {}",test);
 
+        AnimalsInit.insertAllAnimals();
     }
 }
