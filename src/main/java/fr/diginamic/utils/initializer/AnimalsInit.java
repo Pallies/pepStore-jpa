@@ -18,21 +18,21 @@ import java.util.List;
 
 public abstract class AnimalsInit {
     private static final Logger LOGGER = LoggerFactory.getLogger(AnimalsInit.class);
-    private static final Animal[] animals={
-            new Cat(Rand.getDate(), Rand.getColor(),Rand.chipID()),
-            new Cat( Rand.getDate(), Rand.getColor(), Rand.chipID()),
-            new Cat( Rand.getDate(), Rand.getColor(), Rand.chipID()),
-            new Fish( Rand.getDate(), Rand.getColor(), Rand.getEnv()),
-            new Fish( Rand.getDate(), Rand.getColor(), Rand.getEnv()),
-            new Fish( Rand.getDate(), Rand.getColor(), Rand.getEnv()),
+    private static final Animal[] animals = {
+            new Cat(Rand.getDate(), Rand.getColor(), Rand.chipID()),
+            new Cat(Rand.getDate(), Rand.getColor(), Rand.chipID()),
+            new Cat(Rand.getDate(), Rand.getColor(), Rand.chipID()),
+            new Fish(Rand.getDate(), Rand.getColor(), Rand.getEnv()),
+            new Fish(Rand.getDate(), Rand.getColor(), Rand.getEnv()),
+            new Fish(Rand.getDate(), Rand.getColor(), Rand.getEnv()),
     };
 
 
     public static void insertAllAnimals() {
         List<Animal> animalls = Arrays.asList(animals);
-        Service<Animal,Long> animalService = BuilderService.createService(NameRepository.ANIMAL);
+        Service<Animal, Long> animalService = BuilderService.createService(NameRepository.ANIMAL);
         animalls.forEach(animalService::save);
 
-     animalls.forEach(a->LOGGER.trace("save in database -> {}",a));
+        animalls.forEach(a -> LOGGER.trace("save in database -> {}", a));
     }
 }
