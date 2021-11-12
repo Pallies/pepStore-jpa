@@ -45,7 +45,9 @@ public class CatRepository extends Repository implements ICatDao {
         TypedQuery<Cat> qry = getEntityManger()
                 .createQuery("SELECT c FROM Cat as c WHERE c.chipId= :chipsId", Cat.class);
         qry.setParameter("chipsId", id);
-        return qry.getSingleResult();
+        return qry.getResultStream()
+                .findFirst()
+                .orElse(null);
     }
 
     /**

@@ -46,7 +46,9 @@ public class PetStoreRepository extends Repository implements IPetStoreDao {
     public PetStore findByAddress(Address address) {
         TypedQuery<PetStore> qry = getEntityManger().createQuery("SELECT p FROM PetStore as p JOIN p.address as a WHERE p.address= :address", PetStore.class);
         qry.setParameter("address", address);
-        return qry.getSingleResult();
+        return qry.getResultStream()
+                .findFirst()
+                .orElse(null);
     }
 
     /**
