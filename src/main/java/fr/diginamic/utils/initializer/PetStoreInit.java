@@ -36,7 +36,7 @@ public final class PetStoreInit {
     }
 
     public static void persistProduct() {
-
+        LOGGER.trace("affectation des produits");
         Service petStoreService = BuilderService.createService(NameRepository.PETSTORE);
         Service productService = BuilderService.createService(NameRepository.PRODUCT);
         List<PetStore> petStores = petStoreService.find();
@@ -50,6 +50,7 @@ public final class PetStoreInit {
     }
 
     public static void persitAnimal() {
+        LOGGER.trace("affectation des Animaux");
         Service petStoreService = BuilderService.createService(NameRepository.PETSTORE);
         Service animalService = BuilderService.createService(NameRepository.ANIMAL);
         List<Animal> animals = animalService.find();
@@ -66,7 +67,6 @@ public final class PetStoreInit {
     public static Set<Animal> getAnimalsInPetStores(int id) {
         if (id < 0 || id >= 6)
             return null;
-        LOGGER.trace("Animalerie : {}",PET_STORES[id]);
         Service petStoreService = BuilderService.createService(NameRepository.PETSTORE);
         Set<Animal> animals =petStoreService.findByAddress(PET_STORES[id].getAddress()).getAnimals();
         animals.forEach(a->LOGGER.trace("{} appartenant à l'animalerie {}",a,a.getStore().getName()));
