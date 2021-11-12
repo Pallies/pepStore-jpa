@@ -3,6 +3,7 @@ package fr.diginamic.entities.store;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class Address implements Serializable {
@@ -16,7 +17,8 @@ public class Address implements Serializable {
     @Column(name = "VILLE", length = 50, nullable = false)
     private String city;
 
-    public Address(){}
+    public Address() {
+    }
 
     public Address(String number, String street, String zipCode, String city) {
         setNumber(number);
@@ -55,5 +57,17 @@ public class Address implements Serializable {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public void addressMerge(Address addressOld) {
+        if (getNumber() == null)
+            setNumber(addressOld.getNumber());
+        if (getStreet() == null)
+            setStreet(addressOld.getStreet());
+        if (getZipCode() == null)
+            setZipCode(addressOld.getZipCode());
+        if (getCity() == null) {
+            setCity(addressOld.getCity());
+        }
     }
 }

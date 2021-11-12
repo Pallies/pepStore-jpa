@@ -23,7 +23,7 @@ public class PetStore implements Serializable {
     @Embedded
     private Address address = new Address();
 
-    @OneToMany(mappedBy = "store",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private final Set<Animal> animals = new HashSet<>();
 
     @ManyToMany
@@ -56,6 +56,16 @@ public class PetStore implements Serializable {
         animals.add(animal);
     }
 
+    public void petStoreUpdate(PetStore petStoreOld) {
+        if (getId() == null)
+            setId(petStoreOld.getId());
+        if (getName() == null)
+            setName(petStoreOld.getName());
+        if (getManagerName() == null)
+            setManagerName(petStoreOld.getManagerName());
+        address.addressMerge(petStoreOld.getAddress());
+    }
+
     public void deleteAnimal(Animal animal) {
         animals.removeIf(animalRef -> animalRef.equals(animal));
     }
@@ -66,7 +76,6 @@ public class PetStore implements Serializable {
     }
 
     public void addAllProduct(Set<Product> products) {
-
         this.products.addAll(products);
     }
 
@@ -81,6 +90,10 @@ public class PetStore implements Serializable {
     //  GETTER AND SETTER
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
