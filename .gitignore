@@ -1,6 +1,8 @@
-.idea/
-.settings/
-petStore-jpa.iml
-out/
-target/
-src\main\resources\META-INF
+/.idea/
+/.settings/
+/petStore-jpa.iml
+/out/
+/target/
+/src\main\resources\META-INF
+/.classpath
+/.project
