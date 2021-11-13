@@ -1,6 +1,5 @@
 package fr.diginamic.entities.animals;
 
-import fr.diginamic.entities.store.PetStore;
 import fr.diginamic.enums.Color;
 import fr.diginamic.enums.FishLivEnv;
 

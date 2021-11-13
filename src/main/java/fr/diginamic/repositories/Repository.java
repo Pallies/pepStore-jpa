@@ -1,6 +1,5 @@
 package fr.diginamic.repositories;
 
-import fr.diginamic.dao.IDao;
 import fr.diginamic.entities.store.Address;
 import fr.diginamic.entities.store.PetStore;
 import fr.diginamic.utils.enums.ModeDB;

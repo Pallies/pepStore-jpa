@@ -5,7 +5,6 @@ import fr.diginamic.dao.impl.IPetStoreDaoImpl;
 import fr.diginamic.entities.store.Address;
 import fr.diginamic.entities.store.PetStore;
 import fr.diginamic.repositories.BuilderRepository;
-import fr.diginamic.repositories.Repository;
 import fr.diginamic.utils.enums.NameRepository;
 
 import java.util.List;

@@ -1,13 +1,9 @@
 package fr.diginamic.services;
 
 import fr.diginamic.dao.impl.IAnimalDaoImpl;
-import fr.diginamic.dao.impl.ICatDaoImpl;
-import fr.diginamic.dao.impl.IFishDaoImpl;
 import fr.diginamic.entities.animals.Animal;
 import fr.diginamic.entities.animals.Cat;
 import fr.diginamic.entities.animals.Fish;
-import fr.diginamic.entities.store.PetStore;
-import fr.diginamic.utils.enums.NameRepository;
 
 import java.util.ArrayList;
 import java.util.List;

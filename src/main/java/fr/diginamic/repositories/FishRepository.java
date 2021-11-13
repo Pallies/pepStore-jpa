@@ -1,9 +1,7 @@
 package fr.diginamic.repositories;
 
-import fr.diginamic.dao.IDao;
 import fr.diginamic.dao.IFishDao;
 import fr.diginamic.entities.animals.Fish;
-import fr.diginamic.entities.store.Product;
 import fr.diginamic.utils.enums.ModeDB;
 
 import java.util.List;

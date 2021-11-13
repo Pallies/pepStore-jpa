@@ -30,7 +30,7 @@ public class CatService extends Service<Cat> implements ICatDaoImpl {
      */
     @Override
     public Cat findById(Long id) {
-        return (Cat) repository.findById(id);
+        return repository.findById(id);
     }
 
     /**

@@ -62,7 +62,8 @@ public class ProductService extends Service<Product> implements IProductDaoImpl 
      */
     @Override
     public boolean update(Product productOld, Product productNew) {
-        //todo
+        productNew.productUpdate(productOld);
+        repository.update(productNew);
         return repository.contains(productNew);
     }
 
