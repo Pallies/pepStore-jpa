@@ -36,5 +36,8 @@ public class App
         PetStoreInit.persistProduct();
         PetStoreInit.persitAnimal();
         PetStoreInit.getAnimalsInPetStores(2);
+
+        LOGGER.trace("© Application effectué par Palliès yvan \uD83D\uDE09");
+        ConnectionDB.closeConnection();
     }
 }

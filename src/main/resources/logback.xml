@@ -7,7 +7,12 @@
             <Pattern>%d{HH:mm:ss.SSS} %-5level [%thread] (%file:%line\) =&gt; %msg%n</Pattern>
         </encoder>
     </appender>
+    <appender name="STDOUT2" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 
+            <Pattern> %-5level [%thread] (%file:%line\) =&gt; %msg%n</Pattern>
+        </encoder>
+    </appender>
     <logger name="org.hibernate" level="OFF"/>
     <logger name="org.hibernate.SQL" level="OFF"/>
     <logger name="org.hibernate.transaction" level="OFF"/>
@@ -16,10 +21,12 @@
     <logger name="org.hibernate.pretty" level="OFF"/>
     <logger name="org.hibernate.cache" level="OFF"/>
     <logger name="org.hibernate.type.descriptor.sql" level="OFF" />
+    <logger name="fr.diginamic" level="TRACE" additivity="false">
+        <appender-ref ref="STDOUT2" />
+    </logger>
     <logger name="fr.diginamic.utils.initializer" level="TRACE" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
-
     <root level="OFF">
         <appender-ref ref="STDOUT" />
     </root>
