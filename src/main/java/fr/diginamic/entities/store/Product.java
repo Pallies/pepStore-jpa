@@ -14,31 +14,43 @@ import java.util.Set;
 @Entity
 @Table(name = "PRODUIT")
 public class Product implements Serializable {
-    
-    /** The id. */
+
+    /**
+     * The id.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
-    /** The code. */
+    /**
+     * The code.
+     */
     @Column(name = "REF", length = 50, nullable = false)
     private String code;
 
-    /** The label. */
+    /**
+     * The label.
+     */
     @Column(name = "NOM", nullable = false)
     private String label;
 
-    /** The type. */
+    /**
+     * The type.
+     */
     @Enumerated(EnumType.STRING)
     @Column(name = "TYPE", nullable = false)
     private ProdType type;
 
-    /** The price. */
+    /**
+     * The price.
+     */
     @Column(name = "PRIX", precision = 10, scale = 2, nullable = false)
     private Double price;
 
-    /** The pet stores. */
+    /**
+     * The pet stores.
+     */
     @ManyToMany(mappedBy = "products")
     private final Set<PetStore> petStores = new HashSet<>();
 
@@ -51,9 +63,9 @@ public class Product implements Serializable {
     /**
      * Instantiates a new product.
      *
-     * @param code the code
+     * @param code  the code
      * @param label the label
-     * @param type the type
+     * @param type  the type
      * @param price the price
      */
     public Product(String code, String label, ProdType type, Double price) {
@@ -197,14 +209,13 @@ public class Product implements Serializable {
      */
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", code='" + code + '\'' +
-                ", label='" + label + '\'' +
-                ", type=" + type +
-                ", price=" + price +
-                ", petStores=" + petStores +
-                '}';
+        final StringBuilder sb = new StringBuilder("Product{")
+                .append("\n code : ").append(code)
+                .append("\n label : ").append(label)
+                .append("\n type : ").append(type)
+                .append("\n price : ").append(price)
+                .append("\n petStores : ").append(petStores);
+        return sb.toString();
     }
 
     /**
