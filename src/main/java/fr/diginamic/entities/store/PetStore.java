@@ -12,35 +12,48 @@ import java.util.*;
 @Entity
 @Table(name = "MAGASIN")
 public class PetStore implements Serializable {
-    
-    /** The id. */
+
+    /**
+     * The id.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
-    /** The name. */
+    /**
+     * The name.
+     */
     @Column(name = "NOM", length = 50, nullable = false)
     private String name;
 
-    /** The manager name. */
+    /**
+     * The manager name.
+     */
     @Column(name = "CADRE", length = 50, nullable = false)
     private String managerName;
 
-    /** The address. */
+    /**
+     * The address.
+     */
     @Embedded
     private Address address = new Address();
 
-    /** The animals. */
+    /**
+     * The animals.
+     */
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private final Set<Animal> animals = new HashSet<>();
 
-    /** The products. */
+    /**
+     * The products.
+     */
     @ManyToMany
     @JoinTable(name = "PRODUIT_VENTE",
             joinColumns = @JoinColumn(name = "ID_MAG", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "ID_PROD", referencedColumnName = "ID"))
-    private final Set<Product> products = new HashSet<>();
+    private Set<Product> products = new HashSet<>();
+
 
     /**
      * Instantiates a new pet store.
@@ -51,12 +64,12 @@ public class PetStore implements Serializable {
     /**
      * Instantiates a new pet store.
      *
-     * @param name the name
+     * @param name        the name
      * @param managerName the manager name
-     * @param number the number
-     * @param street the street
-     * @param zipCode the zip code
-     * @param city the city
+     * @param number      the number
+     * @param street      the street
+     * @param zipCode     the zip code
+     * @param city        the city
      */
     public PetStore(String name, String managerName, String number, String street, String zipCode, String city) {
         setName(name);
@@ -75,7 +88,7 @@ public class PetStore implements Serializable {
     }
 
     /**
-     * #Relation PetStore -> Animal 
+     * #Relation PetStore -> Animal
      * Adds the all animal.
      *
      * @param animals the animals
@@ -97,6 +110,7 @@ public class PetStore implements Serializable {
     /**
      * Pet store update.
      * merge old in new
+     *
      * @param petStoreOld the pet store old
      */
     public void petStoreUpdate(PetStore petStoreOld) {
@@ -109,15 +123,23 @@ public class PetStore implements Serializable {
         address.addressMerge(petStoreOld.getAddress());
     }
 
+    //  PRODUCT
 
     /**
      * Gets the products.
      *
      * @return the products
      */
-    //  PRODUCT
     public Set<Product> getProducts() {
         return products;
+    }
+
+    /**
+     * Sets the products.
+     *
+     */
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 
     /**
@@ -128,7 +150,7 @@ public class PetStore implements Serializable {
      */
     public void addAllProduct(Set<Product> products) {
         this.products.addAll(products);
-        products.forEach(p->p.addPetStore(this));
+        products.forEach(p -> p.addPetStore(this));
     }
 
     /**
@@ -221,11 +243,11 @@ public class PetStore implements Serializable {
      */
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof PetStore))
+        if (!(obj instanceof PetStore))
             return false;
         PetStore petStore = (PetStore) obj;
-        if(petStore.getId() != null)
-           return getId().equals(petStore.getId());
+        if (petStore.getId() != null)
+            return getId().equals(petStore.getId());
         return Objects.equals(getName(), petStore.getName())
                 && Objects.equals(getManagerName(), petStore.getManagerName())
                 && Objects.equals(getAddress(), petStore.getAddress());
@@ -238,6 +260,6 @@ public class PetStore implements Serializable {
      */
     @Override
     public int hashCode() {
-        return Objects.hash( getName(), getManagerName(), getAddress());
+        return Objects.hash(getName(), getManagerName(), getAddress());
     }
 }
